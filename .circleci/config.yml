@@ -39,7 +39,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: echo "Hello World" > output.txt
+          command: echo "Hello World" > /home/circleci/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
