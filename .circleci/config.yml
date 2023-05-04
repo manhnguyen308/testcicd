@@ -61,10 +61,20 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - print_pipeline_id
+  pipeline_failed_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: exit 1
+      - run: 
+          name: on error
+          command: echo "Error!"
+          when: on_fail
+
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - pipeline_id_job
+      - pipeline_failed_job
